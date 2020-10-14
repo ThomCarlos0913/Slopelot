@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Slopelot</title>
+
+    <link rel="shortcut icon" type="image/png" href="styles/icon.svg" />
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Bootstrap, Font Awesome and Index Style -->
+    <link rel="stylesheet" href="styles/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="styles/fontawesome/all.min.css">
+    <link rel="stylesheet" href="styles/spinkit/spinkit.min.css">
+    <link rel="stylesheet" href="styles/index.css">
+
+    <!-- Bootstrap, Popper, Axios,VueJS-->
+    <script src="scripts/jspdf/jspdf.min.js"></script>
+    <script src="scripts/jspdf/jspdf.plugin.autotable.min.js"></script>
+    <script src="scripts/chartjs/Chart.bundle.min.js"></script>
+    <script src="scripts/bootstrap/bootstrap.min.js"></script>
+    <script src="scripts/threejs/three.min.js"></script>
+    <script src="scripts/plotly/plotly.min.js"></script>
+    <script src="scripts/popper/popper.min.js"></script>
+    <script src="scripts/axios/axios.min.js"></script>
+    <script src="scripts/vuejs/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="index-vue">
+        <!-- Start of main spinner -->
+        <div class="main-spinner-container">
+            <div class="spinner-main">
+                <div class="sbl-half-circle-spin">
+                    <div></div>
+                </div>
+            </div>
+            <div class="loading-text">Collecting Data</div>
+        </div>
+        <!-- End of main spinner -->
+        <!-- Start of spinner -->
+        <div class="spinner-container">
+            <div class="spinner">
+                <div class="sk-circle">
+                    <div class="sk-circle1 sk-child"></div>
+                    <div class="sk-circle2 sk-child"></div>
+                    <div class="sk-circle3 sk-child"></div>
+                    <div class="sk-circle4 sk-child"></div>
+                    <div class="sk-circle5 sk-child"></div>
+                    <div class="sk-circle6 sk-child"></div>
+                    <div class="sk-circle7 sk-child"></div>
+                    <div class="sk-circle8 sk-child"></div>
+                    <div class="sk-circle9 sk-child"></div>
+                    <div class="sk-circle10 sk-child"></div>
+                    <div class="sk-circle11 sk-child"></div>
+                    <div class="sk-circle12 sk-child"></div>
+                </div>
+            </div>
+        </div>
+        <!-- End of spinner -->
+        <!-- Start of navigation -->
+        <div class="slop-nav d-flex justify-content-between align-items-center">
+            <!-- Logo -->
+            <div class="slop-logo">
+                <div class="row">
+                    <div class="col-xs-2 mountain-icon"><i class="fas fa-mountain"></i></div>
+                    <div class="col-xs-10 logo-text">
+                        <h1 class="logo-container"><span id="logo-first">SLOPELOT</span></h1>
+                        <p id="logo-sub">Slope Monitoring</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Version Number -->
+            <div class="version-number">
+                Version: Alpha 2.0.4.0
+            </div>
+        </div>
+        <!-- End of navigation-->
+        <!-- Start of Navigation Tab -->
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link nav-tab-item active-nav-tab" href="#" v-on:click="change_tab(0)">Main Dashboard</a>
+            </li>
+            <li class=" nav-item">
+                <a class="nav-link nav-tab-item" href="#" v-on:click="change_tab(1)">Slope Data Table</a>
+            </li>
+            <li class=" nav-item">
+                <a class="nav-link nav-tab-item" href="#" v-on:click="change_tab(2)">3D Visualization</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav-tab-item" href="#" v-on:click="change_tab(3)">Console Logs</a>
+            </li>
+        </ul>
+        <!-- End of Navigation Tab-->
+
+        <!-- Start of Dashboard -->
+        <div class=" dashboard-container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="moisture-container probe-1">
+                        <h1 class="container-header">Probe 1 Soil Moisture</h1>
+                        <canvas id="moisture-graph1" width="39" height="14"></canvas>
+                    </div>
+                    <div class="accelerometer-container probe-1">
+                        <h1 class="container-header">Probe 1 Acceleration</h1>
+                        <div id="accel-graph1" style="height:400px;"></div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="moisture-container probe-2">
+                        <h1 class="container-header">Probe 2 Soil Moisture</h1>
+                        <canvas id="moisture-graph2" width="39" height="14"></canvas>
+                    </div>
+                    <div class="accelerometer-container probe-2">
+                        <h1 class="container-header">Probe 2 Acceleration</h1>
+                        <div id="accel-graph2" style="height:400px;"></div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="moisture-container probe-3">
+                        <h1 class="container-header">Probe 3 Soil Moisture</h1>
+                        <canvas id="moisture-graph3" width="39" height="14"></canvas>
+                    </div>
+                    <div class="accelerometer-container probe-3">
+                        <h1 class="container-header">Probe 3 Acceleration</h1>
+                        <div id="accel-graph3" style="height:400px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of Dashboard -->
+
+        <!-- Start of Slope Table -->
+        <div class="data-container">
+            <div class="table-filters">
+                <div class="">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <small class="filter-label">Current Probe Selected</small>
+                            <div id="custom-select">
+                                <select v-model="selected_probe">
+                                    <option>Probe 1</option>
+                                    <option>Probe 2</option>
+                                    <option>Probe 3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <small class="filter-label">Time Frame Filters</small>
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <input id="time-start" class="datepicker-input" type="text"
+                                        placeholder="Start of time frame" />
+                                </div>
+                                <div class="col-sm-5">
+                                    <input id="time-end" class="datepicker-input" type="text"
+                                        placeholder="End of time frame" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <a href="#" class="filter-btn" v-on:click="change_filter">Apply Filter</a>
+                        </div>
+                        <div class="col-sm-2">
+                            <a href="#" class="filter-btn" v-on:click="export_pdf">Save as PDF</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-container">
+                <table class="table table-striped data-table">
+                    <thead class="table-header">
+                        <tr class="header-row">
+                            <th scope="col">Id</th>
+                            <th scope="col">Accelormeter1 X</th>
+                            <th scope="col">Accelormeter1 Y</th>
+                            <th scope="col">Accelormeter1 Z</th>
+                            <th scope="col">Moisture 1</th>
+                            <th scope="col">Accelormeter2 X</th>
+                            <th scope="col">Accelormeter2 Y</th>
+                            <th scope="col">Accelormeter2 Z</th>
+                            <th scope="col">Moisture 2</th>
+                            <th scope="col">Accelormeter3 X</th>
+                            <th scope="col">Accelormeter3 Y</th>
+                            <th scope="col">Accelormeter3 Z</th>
+                            <th scope="col">Moisture 3</th>
+                            <th scope="col">Datetime Stamp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-row" v-for="(value, key) in display_data">
+                            <td>{{value[1]['id']}}</td>
+                            <td>{{value[1]['accel1x']}}</td>
+                            <td>{{value[1]['accel1y']}}</td>
+                            <td>{{value[1]['accel1z']}}</td>
+                            <td>{{value[1]['soil1']}}</td>
+                            <td>{{value[1]['accel2x']}}</td>
+                            <td>{{value[1]['accel2y']}}</td>
+                            <td>{{value[1]['accel2z']}}</td>
+                            <td>{{value[1]['soil2']}}</td>
+                            <td>{{value[1]['accel3x']}}</td>
+                            <td>{{value[1]['accel3y']}}</td>
+                            <td>{{value[1]['accel3z']}}</td>
+                            <td>{{value[1]['soil3']}}</td>
+                            <td>{{value[1]['time']}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Start of Pagination -->
+            <nav aria-label="Page navigation" class="pagination-nav">
+                <small class="pagination-lbl">Page {{current_page}} out of {{num_of_divide_pagination}} pages</small>
+                <ul class="pagination pagination-sm">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous"
+                            v-on:click="increment_decrement_pagination(2)">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    <li class="page-item" v-for="counter in num_of_divide_pagination" :key="num_of_divide_pagination">
+                        <a class="page-link pagination-btn" href="#"
+                            v-on:click="change_pagination(counter)">{{counter}}</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next" v-on:click="increment_decrement_pagination(1)">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- End of Pagination-->
+        </div>
+        <!-- End of Slope table -->
+
+        <!-- Start of 3D Visualization -->
+        <div class="threed-container">
+            <div class="row">
+                <div class="col-sm-4 module-container" id="module-1">
+                    <div class="module-information">
+                        <h1 class="threed-header">Module 1</h1>
+                        <ul class="module-reading">
+                            <li class="reading with-border d-flex justify-content-between">
+                                <span>Upper Pitch</span>
+                                <span>{{p31}}</span>
+                            </li>
+                            <li class="reading with-border d-flex justify-content-between">
+                                <span>Middle Pitch</span>
+                                <span>{{p21}}</span>
+                            </li>
+                            <li class="reading with-border d-flex justify-content-between">
+                                <span>Lower Pitch</span>
+                                <span>{{p11}}</span>
+                            </li>
+                            <li class="reading with-border d-flex justify-content-between">
+                                <span>Upper Roll</span>
+                                <span>{{r31}}</span>
+                            </li>
+                            <li class="reading with-border d-flex justify-content-between">
+                                <span>Upper Roll</span>
+                                <span>{{r21}}</span>
+                            </li>
+                            <li class="reading with-border d-flex justify-content-between">
+                                <span>Upper Roll</span>
+                                <span>{{r11}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4 module-container" id="module-2">
+                    <div class="module-information">
+                        <h1 class="threed-header">Module 2</h1>
+                        <ul class="module-reading">
+                            <li class="reading with-border d-flex justify-content-between">
+                                <span>Upper Pitch</span>
+                                <span>{{p32}}</span>
+                            </li>
+                            <li class="reading with-border d-flex justify-content-between">
+                                <span>Middle Pitch</span>
+                                <span>{{p22}}</span>
+                            </li>
+                            <li class="reading with-border d-flex justify-content-between">
+                                <span>Lower Pitch</span>
+                                <span>{{p12}}</span>
+                            </li>
+                            <li class="reading with-border d-flex justify-content-between">
+                                <span>Upper Roll</span>
+                                <span>{{r32}}</span>
+                            </li>
+                            <li class="reading with-border d-flex justify-content-between">
+                                <span>Upper Roll</span>
+                                <span>{{r22}}</span>
+                            </li>
+                            <li class="reading with-border d-flex justify-content-between">
+                                <span>Upper Roll</span>
+                                <span>{{r12}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4 module-container" id="module-3">
+                    <div class="module-information">
+                        <h1 class="threed-header">Module 3</h1>
+                        <ul class="module-reading">
+                            <li class="reading with-border d-flex justify-content-between">
+                                <span>Upper Pitch</span>
+                                <span>{{p33}}</span>
+                            </li>
+                            <li class="reading with-border d-flex justify-content-between">
+                                <span>Middle Pitch</span>
+                                <span>{{p23}}</span>
+                            </li>
+                            <li class="reading with-border d-flex justify-content-between">
+                                <span>Lower Pitch</span>
+                                <span>{{p13}}</span>
+                            </li>
+                            <li class="reading with-border d-flex justify-content-between">
+                                <span>Upper Roll</span>
+                                <span>{{r33}}</span>
+                            </li>
+                            <li class="reading with-border d-flex justify-content-between">
+                                <span>Middle Roll</span>
+                                <span>{{r23}}</span>
+                            </li>
+                            <li class="reading with-border d-flex justify-content-between">
+                                <span>Lower Roll</span>
+                                <span>{{r13}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of 3D Visualization -->
+
+        <!-- Start of Console Logs -->
+        <div class="log-container">
+            <table class="table table-striped data-table">
+                <thead class="table-header">
+                    <tr class="header-row">
+                        <th class="col-sm-1" scope="col">Log ID</th>
+                        <th class="col-sm-2" scope="col">Log Date</th>
+                        <th class="col-sm-9" scope="col">Log Entry</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-row" v-for="(value, key) in console_log">
+                        <td>{{value['id']}}</td>
+                        <td>{{value['log_date']}}</td>
+                        <td>{{value['entry']}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- Start of Console Logs -->
+
+        <div class="footer d-flex justify-content-between">
+            <div class="footer-content">System Developed by: ADUInno</div>
+            <div class="footer-content">Copyright © 2020</div>
+        </div>
+
+    </div>
+
+    <script src="scripts/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,500 @@
+* { 
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f2f2f2;
+}
+
+a:focus {
+    outline: none !important;
+}
+
+.page-link:active, .page-link:focus, .btn:active, .btn:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: #0066cc;
+    color: white;
+}
+
+.datepicker-input:focus, .datepicker-input:hover {
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: #f2f2f2;
+    border-color: #ddd !important;
+}
+
+.ui-datepicker .ui-widget-content {
+    background: red;
+}
+
+/* Spinner >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+.main-spinner-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0a3242;
+    z-index: 1;
+    text-align: center;
+}
+
+.loading-text {
+    font-weight: 500;
+    font-size: 1.4em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: white
+}
+
+.spinner-main {
+    display: block;
+    width: 110px;
+    height: 110px;
+    margin: 0px auto;
+    margin-top: 300px;
+}
+
+.spinner-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    display: none;
+}
+
+.spinner {
+    display: block;
+    width: 110px;
+    height: 110px;
+    margin: 300px auto;
+    background-color: white;
+    box-shadow: 0px 0px 10px 1px #737373;
+}
+
+.spinner-text {
+    color: white;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Navigation >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+.slop-nav {
+    width: 100%;
+    height: auto;
+    background-color: #0a3242;
+    padding: 10px 100px;
+    color: white;
+}
+
+/* logo */
+.logo-container {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 0;
+    letter-spacing: 5px;
+}
+
+.mountain-icon {
+    font-size: 32px;
+}
+
+.logo-text {
+    padding-left: 10px;
+}
+
+#logo-first {
+    color: white;
+}
+
+#logo-second {
+    color: white;
+}
+
+#logo-sub {
+    font-weight: 300;
+    font-size: 14px;
+    margin-top: -3px;
+    margin-bottom: 0;
+}
+
+/* Version */
+.version-number {
+    font-size: 10px;
+}
+
+/* Navigation Tab  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+.nav-tab-item  {
+    color: #1a1a1a !important;
+    font-size: 12px;
+}
+
+.nav-tab-item:hover {
+    border-color: #bfbfbf !important;
+    border-bottom: 0px !important;
+}
+
+.nav-tabs {
+    background-color: #d9d9d9;
+}
+
+.active-nav-tab {
+    background-color: #f2f2f2;
+}
+
+/* Dashboard >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+.dashboard-container {
+    padding: 20px 20px 10px 20px;
+    margin: 0px !important;
+}
+
+.moisture-container, .accelerometer-container {
+    background-color: white;
+    border-radius: 10px;
+    border-top: 10px solid #00b792;
+    box-shadow: 0px 5px 7px 0px #cccccc;
+    padding: 10px
+}
+
+.probe-1 {
+    border-top: 10px solid #0066cc; 
+}
+
+.probe-2 {
+    border-top: 10px solid #ff6666; 
+}
+
+.moisture-container {
+    height: 200px;
+    margin-bottom: 20px;
+}
+
+.accelerometer-container {
+    height: 450px;
+}
+
+.bottom-reading-container {
+    margin-top: 20px;
+}
+
+/* Dashboard Header */
+.container-header {
+    font-size: 12px;
+    font-weight: 400;
+    color: #425e4e;
+}
+
+/* Chart Container */
+.chart-container {
+    padding: 0px 30px
+}
+
+
+/* Console Logs >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+.log-container {
+    display: none;
+    padding: 20px;
+}
+
+/* Data Tables >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+.data-container {
+    display: none;
+}
+
+table {
+    border: 1px solid #0066cc;
+}
+
+.table-row td {
+    font-size: 12px;
+}
+
+.table-container {
+    margin: 10px 20px;
+}
+
+.table-header .header-row {
+    background-color: #0066cc;
+}
+
+.table-header tr th {
+    font-size: 10px;
+    color: white;
+}
+
+/* Filters */
+.table-filters {
+    background-color: white;
+    width: 1000px;
+    box-shadow: 0px 5px 7px 0px #cccccc;
+    margin: auto;
+    margin-top: 10px;
+    border: 1px solid #cccccc;
+    padding: 10px
+}
+
+.filter-label {
+    color: #999999;
+    display: block;
+}
+
+.filter-btn {
+    font-size: 12px;
+    color: white;
+    margin-top: 19px;
+    display: block;
+    text-align: center;
+    padding: 5px 0px;
+    width: 130px;
+    background-color: #0066cc;
+    transition: ease-in-out background-color 0.3s;
+}
+
+.datepicker-input {
+    font-size: 12px !important;
+    color: #333;
+    background-color: #f2f2f2;
+    display: inline-block;
+
+}
+
+.datepicker-input::placeholder {
+    color: #333;
+}
+
+.gj-icon {
+    margin-top: -3px !important;
+}
+
+.input-group-append .btn {
+    padding: 0px !important;
+    display: inline;
+    color: #0066cc;
+}
+
+.filter-btn:hover {
+    color: white;
+    background-color: #004080;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#custom-select, #custom-select select {
+    font-family: arial, sans-serif;
+    height: 30px;
+    font-size: 1.05em;
+    width: 150px;
+    display: inline-block;
+}
+  
+  /* [SELECT FIELD] */
+#custom-select select {
+    /* Hide default arrow */
+    appearance: none;
+    font-size: 12px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /* Cosmetics for the select box */
+    width: 100%;
+    padding: 0px 5px;
+    color: #333;
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    outline: none;
+}
+  
+/* [CUSTOM ARROW] */
+#custom-select {
+    position: relative;
+    overflow: hidden;
+    max-width: 320px;
+    border-radius: 3px;
+}
+#custom-select:after {
+    /* [HTML symbol you want to use] */
+    content: "\25bc";
+    color: #888;
+    font-size: 12px;
+    /* Positioning for the custom arrow */
+    padding: 6px 0px;
+    position: absolute;
+    right: 10px;
+    top: 0;
+    text-align: center;
+    pointer-events: none;
+}
+
+/* Pagination */
+.pagination-nav {
+    margin-left: 20px;
+}
+
+.active-pagination {
+    background-color: #0066cc;
+    color: white !important;
+}
+
+.pagination-lbl {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+/* 3D Visualization >>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+.threed-container .row {
+    margin: 0 !important;
+}
+
+.threed-container .module-container {
+    padding: 0 !important;
+    margin: 0;
+}
+
+.probe-select-3d {
+    margin: 20px;
+}
+
+.module-information {
+    margin: 10px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0px 5px 7px 0px #cccccc;
+}
+
+.module-reading {
+    padding: 0px;
+    margin: 0 !important;
+}
+
+.reading {
+    padding: 5px 20px;
+}
+
+.with-border {
+    border-bottom: 1px solid #cccccc;
+}
+
+.threed-header {
+    padding: 5px 15px;
+    font-size: 1em;
+    color: white;
+    background-color: #0066cc;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.probe-3d-btn-select {
+    background-color: #0066cc;
+    border-color: #004d99;
+    border-radius: 0px;
+    font-size: 14px;
+    padding: 5px 20px;
+}
+
+.probe-3d-btn-select:hover {
+    border-color: #0059b3;
+    background-color: #0059b3 !important;
+}
+
+.probe-select-3d .active {
+    background-color: #004080 !important;
+    border-color: #004080 !important;
+}
+
+.model-stats {
+    position: absolute;
+}
+
+.model-stat-data {
+    display: block;
+    width: 300px;
+    text-align: end;
+}
+
+.stat-header {
+    font-weight: 600;
+    color: #0066cc;
+    font-size: 18px;
+}
+
+.stat-val {
+    font-weight: 300;
+}
+
+.stat-actual-val {
+    margin-left: 10px;
+}
+
+.upper-stat {
+    top: 240px;
+    left: 200px
+}
+
+.middle-stat {
+    top: 500px;
+    left: 200px
+}
+
+.lower-stat {
+    top: 760px;
+    left: 200px
+}
+
+/* Footer >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+.footer {
+    padding: 0px 35px;
+    margin-bottom: 20px;
+}
+
+.footer-content {
+    font-size: 12px;
+}
+
+/* SPINNER */
+.sbl-half-circle-spin {
+    height: 48px;
+    width: 48px;
+    color: white;
+    display: inline-block;
+    position: relative;
+    border: 1px solid;
+    border-radius: 50%;
+    animation: animeCircleSpin 4s ease-in-out infinite reverse; }
+    .sbl-half-circle-spin::after {
+      content: '';
+      border: 4px solid;
+      position: absolute;
+      left: 10px;
+      top: 4px;
+      border-radius: inherit; }
+    .sbl-half-circle-spin div {
+      height: 50%;
+      width: 50%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 0;
+      margin: auto;
+      border: 1px solid;
+      border-radius: 50%;
+      animation: animeCircleSpin 3s ease-in-out infinite; }
+      .sbl-half-circle-spin div::before {
+        height: 0;
+        width: 0;
+        content: '';
+        border-radius: 50%;
+        display: block; }
+      .sbl-half-circle-spin div::before {
+        border: 12px solid;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        transform: rotate(-45deg); }
+  
+  @keyframes animeCircleSpin {
+    0% {
+      transform: rotate(0); }
+    50% {
+      transform: rotate(720deg); }
+    100% {
+      transform: rotate(0); } }
+  
